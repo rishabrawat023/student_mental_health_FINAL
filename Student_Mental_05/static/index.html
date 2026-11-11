@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Student Mental Health Score</title><link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="shell">
+<header class="topbar">
+<a class="brand" href="#"><span class="brand-mark">✳</span><span>mind<span class="brand-light">signal</span></span></a>
+<div class="nav-actions"><span class="top-pill"><span class="live-dot"></span> STUDENT WELLNESS ANALYTICS</span><button class="nav-btn" id="adminNav">Admin</button></div>
+</header>
+<section id="authScreen">
+<section class="hero"><div class="eyebrow"><span class="eyebrow-line"></span> YOUR WELLBEING, IN CONTEXT</div>
+<h1>Check in with<br><em>yourself.</em></h1>
+<p class="hero-copy">A private space to reflect on your daily habits, understand your wellness patterns and track your progress over time.</p>
+<div class="hero-meta"><span>01 — PERSONAL PROFILE</span><span>02 — DAILY RHYTHM</span><span>03 — YOUR SIGNAL</span></div></section>
+<div class="auth-grid">
+<section class="form-card">
+<div class="tabs"><button class="tab active" data-tab="login">Student login</button><button class="tab" data-tab="register">Create account</button></div>
+<form id="loginForm" class="form-stack"><h2>Welcome back</h2><label class="field">Student ID<input name="student_id" placeholder="STU-XXXXXXXX" required></label><label class="field">Password<input name="password" type="password" required></label><button class="submit-btn">Log in <span class="btn-arrow">↗</span></button><p class="form-footnote">Use the Student ID you received during registration.</p></form>
+<form id="registerForm" class="form-stack hidden">
+<h2>Create your student account</h2>
+<div class="field-grid two">
+<label class="field">Full name *<input name="full_name" required minlength="2"></label>
+<label class="field">Age *<input name="age" type="number" min="10" max="100" required></label>
+<label class="field">Email *<input name="email" type="email" required></label>
+<label class="field">Country<input name="country" placeholder="Your country"></label>
+<label class="field">School / College / University<input name="institution"></label>
+<label class="field">Course / Class<input name="course"></label>
+<label class="field">Gender<select name="gender"><option>Prefer not to say</option><option>Female</option><option>Male</option><option>Other</option></select></label>
+<label class="field">Academic level<select name="academic_level"><option value="">Select level</option><option>High School</option><option>Undergraduate</option><option>Graduate</option><option>Other</option></select></label>
+</div>
+<label class="field">Create password *<input name="password" type="password" minlength="8" required><small>At least 8 characters.</small></label>
+<div class="group-title spaced"><span class="mini-icon">◷</span> YOUR WELLNESS CHECK-IN</div>
+<div class="field-grid two">
+<label class="field">Sleep per night (hours)<input name="sleep_hours_per_night" type="number" min="0" max="24" step=".5" value="7.5" required></label>
+<label class="field">Physical activity (hours/day)<input name="physical_activity_hours" type="number" min="0" max="24" step=".25" value=".5" required></label>
+<label class="field">Study hours per day<input name="study_hours" type="number" min="0" max="24" step=".5" value="5" required></label>
+<label class="field">Social media use (hours/day)<input name="avg_daily_usage_hours" type="number" min="0" max="24" step=".5" value="3" required></label>
+<label class="field">Daily phone unlocks<input name="daily_unlocks" type="number" min="0" max="10000" value="60" required></label>
+<label class="field">Most-used platform<select name="most_used_platform"><option>Instagram</option><option>YouTube</option><option>WhatsApp</option><option>Facebook</option><option>Snapchat</option><option>TikTok</option><option>Other</option></select></label>
+<label class="field">Main purpose<select name="purpose_of_use"><option>Education</option><option>Networking</option><option>Entertainment</option><option>News</option></select></label>
+<label class="field">Stress level<select name="stress_level"><option>Low</option><option selected>Medium</option><option>High</option><option>Very High</option></select></label>
+</div>
+<button class="submit-btn">Create account & view score <span class="btn-arrow">↗</span></button>
+<p class="form-footnote">Your Student ID will be generated automatically. Save it for future logins.</p>
+</form>
+</section>
+<aside class="result-card"><div class="result-top"><span class="step">YOUR WELLNESS SPACE</span><span class="result-status"><span class="live-dot"></span> PRIVATE ACCOUNT</span></div><div class="result-intro"><span class="result-spark">✳</span><h2>Your signal</h2><p>A gentle snapshot, not a label.</p></div><div class="gauge-wrap"><svg class="gauge" viewBox="0 0 260 165"><path class="gauge-track" d="M 30 140 A 100 100 0 0 1 230 140" pathLength="100"/><path id="gaugeValue" class="gauge-value" d="M 30 140 A 100 100 0 0 1 230 140" pathLength="100"/><text x="130" y="111" class="gauge-score" id="scoreNumber">—</text><text x="130" y="137" class="gauge-out-of">OUT OF 10</text></svg></div><div class="result-message"><div class="message-icon">↗</div><div><h3>Make space for a check-in</h3><p>Register or log in to see your saved wellness reports and recommendations.</p></div></div><p class="result-note">This tool supports personal reflection. It is not a clinical assessment or diagnosis.</p></aside>
+</div></section>
+<section id="studentScreen" class="hidden">
+<div class="dashboard-heading"><div><div class="eyebrow">YOUR WELLNESS SPACE</div><h1>Hello, <em id="studentFirstName">there</em></h1><p class="hero-copy">A snapshot of your habits and your progress over time.</p></div><button class="reset-btn" id="studentLogout">Log out</button></div>
+<div class="stats-grid"><article class="score-card"><div class="step">LATEST WELLNESS SCORE</div><div class="big-score"><span id="latestScore">—</span><small>/10</small></div><p id="scoreCaption">Your latest check-in</p><div class="progress-track"><i id="scoreProgress"></i></div></article><article class="stat-card"><div class="step">YOUR STUDENT ID</div><strong id="studentIdText">—</strong><p>Keep this ID safe for future logins.</p></article><article class="stat-card"><div class="step">CHECK-INS COMPLETED</div><strong id="reportCount">0</strong><p>Your progress, one check-in at a time.</p></article></div>
+<div class="dashboard-grid"><article class="form-card"><h2>Wellness progress</h2><p class="muted">Your previous scores</p><canvas id="progressChart" height="190"></canvas><div id="chartEmpty" class="muted small">Complete another check-in to see your progress chart.</div></article><article class="form-card"><h2>Personalized recommendations</h2><p class="muted">Small practical steps based on your latest check-in.</p><ul id="recommendations" class="recommendations"></ul></article></div>
+<div class="dashboard-grid">
+<article class="form-card"><h2>New wellness check-in</h2><form id="assessmentForm" class="form-stack"><div class="field-grid two">
+<label class="field">Sleep per night (hours)<input name="sleep_hours_per_night" type="number" min="0" max="24" step=".5" value="7.5" required></label>
+<label class="field">Physical activity (hours/day)<input name="physical_activity_hours" type="number" min="0" max="24" step=".25" value=".5" required></label>
+<label class="field">Study hours per day<input name="study_hours" type="number" min="0" max="24" step=".5" value="5" required></label>
+<label class="field">Social media use (hours/day)<input name="avg_daily_usage_hours" type="number" min="0" max="24" step=".5" value="3" required></label>
+<label class="field">Daily phone unlocks<input name="daily_unlocks" type="number" min="0" max="10000" value="60" required></label>
+<label class="field">Stress level<select name="stress_level"><option>Low</option><option selected>Medium</option><option>High</option><option>Very High</option></select></label>
+</div><button class="submit-btn">Save new check-in <span class="btn-arrow">↗</span></button></form></article>
+<article class="form-card"><h2>Edit your profile</h2><form id="profileForm" class="form-stack">
+<label class="field">Full name<input name="full_name" required></label><label class="field">Email<input name="email" type="email" required></label>
+<label class="field">School / College / University<input name="institution"></label><label class="field">Course / Class<input name="course"></label>
+<div class="field-grid two"><label class="field">Age<input name="age" type="number" min="10" max="100" required></label><label class="field">Gender<select name="gender"><option>Prefer not to say</option><option>Female</option><option>Male</option><option>Other</option></select></label></div>
+<label class="field">Country<input name="country"></label><label class="field">Academic level<input name="academic_level"></label><button class="reset-btn">Save profile changes</button>
+</form></article></div>
+<article class="form-card report-card"><h2>Previous reports</h2><div class="table-wrap"><table><thead><tr><th>Date</th><th>Score</th><th>Sleep</th><th>Stress</th><th>Social media</th></tr></thead><tbody id="reportsRows"></tbody></table></div></article>
+</section>
+<section id="adminScreen" class="hidden">
+<div class="dashboard-heading"><div><div class="eyebrow">SECURE AREA</div><h1>Admin <em>dashboard</em></h1><p class="hero-copy">Manage student records and view aggregate activity.</p></div><button class="reset-btn" id="adminLogout">Log out</button></div>
+<div id="adminLoginPanel" class="form-card admin-login"><form id="adminLoginForm" class="form-stack"><h2>Administrator sign in</h2><label class="field">Username<input name="username" required></label><label class="field">Password<input name="password" type="password" required></label><button class="submit-btn">Sign in <span class="btn-arrow">↗</span></button></form></div>
+<div id="adminData" class="hidden"><div class="stats-grid"><article class="stat-card"><div class="step">STUDENTS</div><strong id="adminStudentCount">0</strong></article><article class="stat-card"><div class="step">CHECK-INS</div><strong id="adminReportCount">0</strong></article><article class="stat-card"><div class="step">AVERAGE SCORE</div><strong id="adminAverage">—</strong></article></div>
+<article class="form-card"><div class="panel-head"><h2>Student records</h2><input id="studentSearch" class="search" placeholder="Search name, ID or email"></div><div class="table-wrap"><table><thead><tr><th>Student ID</th><th>Name</th><th>Email</th><th>Institution</th><th>Latest score</th><th>Action</th></tr></thead><tbody id="adminRows"></tbody></table></div></article></div>
+</section>
+<div id="toast" class="toast" role="status"></div>
+<footer><span>MINDSIGNAL / STUDENT WELLNESS</span><span>BUILT FOR A BETTER CHECK-IN <b>✳</b></span></footer>
+</main><script src="/static/script.js" defer></script>
+</body></html>
